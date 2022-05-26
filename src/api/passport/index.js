@@ -15,7 +15,21 @@ export default () => {
   // 매 요청시 실행 call by passport.session 미들웨어
   // user.id -> parameter id
   passport.deserializeUser((id, done) => {
-    User.findOne({ where: { id } })
+    User.findOne({
+      where: { id },
+      include: [
+        {
+          model: User,
+          attributes: ["id", "nick"],
+          as: "Followers",
+        },
+        {
+          model: User,
+          attributes: ["id", "nick"], // 가져올 필드 지정
+          as: "Followings",
+        },
+      ],
+    })
       .then((user) => done(null, user)) // req.user에 저장
       .catch((err) => done(err));
   });
