@@ -18,7 +18,7 @@ import passportConfig from "./api/passport/index.js";
 
 dotenv.config();
 
-const app = express();
+export const app = express();
 passportConfig(); // 패스포트 설정
 app.set("port", process.env.PORT || 8001);
 app.set("view engine", "html");
@@ -73,8 +73,4 @@ app.use((err, req, res, next) => {
   res.locals.error = process.env.NODE_ENV !== "production" ? err : {};
   res.status(err.status || 500);
   res.render("error");
-});
-
-app.listen(app.get("port"), () => {
-  console.log(app.get("port"), "번 포트에서 대기중");
 });

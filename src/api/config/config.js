@@ -13,10 +13,10 @@ export default {
   },
 
   test: {
-    username: "root",
-    password: null,
-    database: "database_test",
-    host: "127.0.0.1",
+    username: env.DB_USERNAME,
+    password: env.SEQUELIZE_PASSWORD,
+    database: env.TEST_DB_NAME,
+    host: env.DB_HOST,
     dialect: "mysql",
   },
 
